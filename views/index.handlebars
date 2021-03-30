@@ -1,0 +1,67 @@
+<div class="container main">
+{{!-- Heading area --}}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+        <p class="lead text-center">Keep Track of the workouts you've totally Crushed!</p>
+        </div>
+    </div>
+
+{{!-- Add workout form --}}
+    <div class="container add-workout">
+        <h2 class="text-center">Add description of your workout</h2>
+        <form class="create-form">
+            <div class="form-group">
+                <label for="workout">Workout name:</label>
+                <textarea id="workout" class="form-control" name="workout_name" rows="2" cols="15"></textarea>
+            </div>
+            <div class="form-row text-center">
+                <div class="col-12">
+
+                    <button class="btn btn-light add" type="submit">Add workout</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {{!-- workout list area --}}
+    <div id="workout-list">
+        <div class="container workouts">
+            <div class="row pb-4">
+                <div class="col-md-6 col-sm-12">
+                    <div class="col-12 workout-col m-1">
+
+                        <h2 class="text-center workout-heading">Workouts to Crush</h2>
+
+                        <ul class="workouts">
+                            {{#each workouts}}
+                            {{#unless crushed}}
+                            {{> workouts/workout-block }}
+                            {{/unless}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="col-12 workout-col m-1">
+
+                        <h2 class="text-center workout-heading">Workouts Crushed</h2>
+
+                        <ul class="workouts">
+                            {{#each workouts}}
+                            {{#if crushed}}
+                            {{> workouts/workout-block }}
+                            {{/if}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
