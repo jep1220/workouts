@@ -6,44 +6,41 @@ const workout = require("../models/workouts.js");
 // Create all our routes and set up logic within those routes where required.
 
 // Get workouts
-router.get("/", async function (req, res) {
+router.get("/", async function(req, res) {
     const hbsObject = { workouts: await workout.selectAll() };
     res.render("index", hbsObject);
 });
 
-router.get("/api/workouts", async function (req, res) {
+router.get("/api/workouts", async function(req, res) {
     try {
         const result = await workout.selectAll();
         res.json({ workouts: result });
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
     }
 })
 
 // Create a new workout
-router.post("/api/workouts", async function (req, res) {
+router.post("/api/workouts", async function(req, res) {
     try {
         const result = await workout.insertOne(
             [
                 "workout_name", "crushed"
-            ],
-            [
+            ], [
                 req.body.workout_name, req.body.crushed
             ]
         );
         // Send back the ID of the new workout
         res.json({ id: result.insertId });;
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
     }
 });
 
 // Crush a workout
-router.put("/api/workouts/:id", async function (req, res) {
+router.put("/api/workouts/:id", async function(req, res) {
     const condition = "id = " + req.params.id;
 
     try {
@@ -54,15 +51,14 @@ router.put("/api/workouts/:id", async function (req, res) {
         } else {
             res.status(200).end();
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
     }
 });
 
 // Delete a workout
-router.delete("/api/workouts/:id", async function (req, res) {
+router.delete("/api/workouts/:id", async function(req, res) {
     const condition = "id = " + req.params.id;
 
     try {
@@ -73,8 +69,7 @@ router.delete("/api/workouts/:id", async function (req, res) {
         } else {
             res.status(200).end();
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json(err);
     }
