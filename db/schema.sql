@@ -4,6 +4,12 @@ CREATE DATABASE workouts_db;
 
 USE workouts_db;
 
+CREATE TABLE signup (
+id INT AUTO_INCREMENT PRIMARY KEY,
+email VARCHAR(100) NOT NULL,
+pass_word VARCHAR(256) NOT NULL
+);
+
 CREATE TABLE users (
 id INT AUTO_INCREMENT PRIMARY KEY,
 user_name VARCHAR(50),
